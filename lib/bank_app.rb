@@ -1,7 +1,16 @@
 class Bank
 
-  def create_new_account(last_name, first_name)
-      0
+  def create_new_account
+    @balance = 0
   end
+
+  def deposit_money(x)
+    @balance += x
+  end
+    
+  def check_balance
+    @balance
+  end
+    
 
 end

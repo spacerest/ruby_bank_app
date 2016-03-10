@@ -8,6 +8,21 @@ describe Bank do
     expect(bank_app.create_new_account).to eq 0
   end
 
+  it "deposits $1" do
+    bank_app.create_new_account
+    expect(bank_app.deposit_money(1)).to eq 1
+  end
+
+  it "returns a bank balance after multiple transactions" do
+    bank_app.create_new_account
+    2.times do
+      bank_app.deposit_money(1)
+    end
+    expect(bank_app.check_balance).to eq 2
+  end
+
+      
+      
 #  it "each account is owned by a person" do
 #  end
 #  it "has individual accounts" do
