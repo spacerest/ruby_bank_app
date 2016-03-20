@@ -43,11 +43,37 @@ describe Bank do
     expect(bank.get_member(0).get_account(0).check_balance).to eq 3
   end
 
-  it "deposits and withdrawals are saved in transaction history" do
+  it "deposits and withdrawals for each account are saved in transaction history" do
     bank.new_member(@@member1)
     bank.get_member(0).new_account
     bank.get_member(0).get_account(0).deposit(1)
     expect(bank.get_member(0).get_account(0).transaction_history.class).to eq Array
   end
 
+  it "can read a history of a member's transactions in different accounts" do
+    bank.new_member(@@member1)
+    bank.get_member(0).new_account
+    bank.get_member(0).new_account
+    bank.get_member(0).get_account(0).deposit(5)
+    2.times do
+      bank.get_member(0).get_account(1).deposit(2)
+    end
+    expect(bank.get_member(0).transaction_history.length).to eq 3
+  end
+
+  it "can read a history of all members transactions" do
+    bank.new_member(@@member1)
+    2.times do
+      bank.get_member(0).new_account
+    end
+    bank.new_member(@@member2)
+    2.times do
+      bank.get_member(1).new_account
+    end
+    bank.get_member(0).get_account(0).deposit(10)
+    bank.get_member(0).get_account(1).withdraw(5)
+    bank.get_member(1).get_account(0).deposit(3)
+    bank.get_member(1).get_account(1).deposit(10)
+    expect(bank.transaction_history.length).to eq 4
+    end
 end

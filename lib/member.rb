@@ -2,9 +2,8 @@ require 'account'
 
 class Member
 
-  attr_reader :name
-  attr_accessor :name
-  attr_reader :access_name
+  attr_reader :name, :access_name, :transaction_history
+  attr_accessor :name, :transaction_history
 
   def initialize(name)
     @name = name
@@ -20,6 +19,20 @@ class Member
 
   def get_account(account_id)
     @account_list[account_id]
+  end
+
+  def transaction_history
+    history = []
+    history1 = []
+    @account_list.each { |j|
+	history << j.transaction_history
+    }
+    history.each { |j|
+      j.each { |i|
+	history1 << i 
+      }
+    }
+    history1
   end
     
 

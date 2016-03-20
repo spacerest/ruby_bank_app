@@ -6,7 +6,7 @@ class Transaction
   def initialize(balance, change)
     @balance = balance
     @change = change
-    @time = Time.now
+    @time = Time.now.strftime("%Y%m%d")
   end
 
 end

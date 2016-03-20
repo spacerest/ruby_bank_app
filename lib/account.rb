@@ -2,8 +2,8 @@ require 'transaction'
 
 class Account
 
-  attr_reader :account_id
-  attr_accessor :account_id  
+  attr_reader :account_id, :trnasaction_history
+  attr_accessor :account_id, :transaction_history
   
   def initialize(account_id)
     @account_id = account_id
